@@ -1,3 +1,5 @@
+package nodes
+
 object TvChannels {
 
   val channel2: String =
