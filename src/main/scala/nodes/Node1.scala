@@ -1,5 +1,6 @@
 package nodes
 
+import nodes.Node1Text._
 import util.GameContext
 import util.UserInterface._
 
@@ -8,10 +9,10 @@ import scala.annotation.tailrec
 class Node1(gameContext: GameContext) {
 
   def begin(): Unit = {
-    printAndWait(Node1Text.text1)
-    printAndWait(Node1Text.text2)
+    printAndWait(text1)
+    printAndWait(text2)
     promptChoice(
-      Node1Text.text3, List(
+      text3, List(
       "Get Up" -> "GET_UP",
       "Go back to sleep" -> "SLEEP"
     )) match {
@@ -25,31 +26,31 @@ class Node1(gameContext: GameContext) {
   }
 
   def outOfBed(): Unit = {
-    printAndWait(Node1Text.text4)
+    printAndWait(text4)
     val hairColor = promptChoice(
-      Node1Text.text4a, List(
+      text4a, List(
       "Light" -> "dark",
       "Dark" -> "light"
     ))
     val hairLength = promptChoice(
-      Node1Text.text4b, List(
+      text4b, List(
       "Long" -> "short",
       "Short" -> "long"
     ))
     val beardType = promptChoice(
-      Node1Text.text5, List(
+      text5, List(
       "Beard" -> "a mustache",
       "Mustache" -> "neither a beard nor a mustache",
       "Neither" -> "a beard"
     ))
     print()
     val eyeColor = promptChoice(
-      Node1Text.text6, List(
+      text6, List(
       "Blue" -> "brown",
       "Brown" -> "green",
       "Green" -> "blue"
     ))
-    val filledInText7 = Node1Text.text7
+    val filledInText7 = text7
       .replace("(hairColor)", hairColor)
       .replace("(hairLength)", hairLength)
       .replace("(beardType)", beardType)
@@ -60,16 +61,16 @@ class Node1(gameContext: GameContext) {
 
   def knockOnDoor(): Unit = {
     promptChoice(
-      Node1Text.text8, List(
+      text8, List(
         "Get dressed" -> "DRESSED",
         "Look around" -> "LOOK"
       )
     ) match {
       case "DRESSED" =>
-        printAndWait(Node1Text.text9)
-        lookForClothes(Node1Text.text9a)
+        printAndWait(text9)
+        lookForClothes(text9a)
       case "LOOK" =>
-        lookForClothes(Node1Text.text9a)
+        lookForClothes(text9a)
     }
   }
 
@@ -84,31 +85,31 @@ class Node1(gameContext: GameContext) {
       )
     ) match {
       case "BED" =>
-        printAndWait(Node1Text.text9b)
+        printAndWait(text9b)
         lookForClothes("Look where?")
       case "DRESSER" =>
-        printAndWait(Node1Text.text9c)
-        printAndWait(Node1Text.text10)
+        printAndWait(text9c)
+        printAndWait(text10)
         lookForClothes("Look where?")
       case "CLOSET" =>
         lookInCloset()
       case "BATHROOM" =>
-        printAndWait(Node1Text.text12a)
+        printAndWait(text12a)
         lookInBathroom()
     }
   }
 
   def lookInCloset(): Unit = {
     promptChoice(
-      Node1Text.text11, List(
+      text11, List(
         "Wear blanket" -> "BLANKET",
         "Look elsewhere" -> "LOOK_ELSEWHERE"
       )
     ) match {
       case "BLANKET" =>
         gameContext.storeValue("wearing", "blanket")
-        printAndWait(Node1Text.text12)
-        takeStock()
+        printAndWait(text12)
+        takeStock(text18)
       case "LOOK_ELSEWHERE" =>
         lookForClothes("Look where?")
     }
@@ -126,7 +127,7 @@ class Node1(gameContext: GameContext) {
       choices = choices.+:("Wear Towel" -> "TOWEL")
     }
     promptChoice(
-      Node1Text.text13, choices
+      text13, choices
     ) match {
       case "TOWEL" =>
         takeTowel()
@@ -142,14 +143,14 @@ class Node1(gameContext: GameContext) {
         bathroomDally("use the toilet")
         lookInBathroom()
       case "LEAVE" =>
-        takeStock()
+        takeStock(text18)
     }
-    takeStock()
+    takeStock(text18)
   }
 
   def bathroomDally(action: String): Unit = {
     printAndWait(
-      Node1Text.text17b.replace(
+      text17b.replace(
         "(bathroomAction)", action
       )
     )
@@ -158,35 +159,93 @@ class Node1(gameContext: GameContext) {
   def takeTowel(): Unit = {
     gameContext.storeValue("wearing", "towel")
     promptChoice(
-      Node1Text.text14, List(
+      text14, List(
         "Yes" -> "YES",
         "No" -> "NO"
       )
     ) match {
-      case "YES" => takeStock()
+      case "YES" => takeStock(text18)
       case "NO" => lookInBathroom()
     }
   }
 
   def lookInToilet(): Unit = {
-    val response: String = promptFreeformResponse(Node1Text.text15)
+    val response: String = promptFreeformResponse(text15)
     if (response.toUpperCase.contains("SHIT")) {
-      printAndWait(Node1Text.text16)
+      printAndWait(text16)
       goToNode2()
     } else {
       promptChoice(
-        Node1Text.text17, List(
+        text17, List(
           "Keep looking" -> "STAY",
           "Return to room" -> "EXIT"
         )
       ) match {
         case "STAY" => lookInBathroom()
-        case "EXIT" => takeStock()
+        case "EXIT" => takeStock(text18)
       }
     }
   }
 
-  def takeStock(): Unit = ???
+  def takeStock(text: String): Unit = {
+    promptChoice(
+      text, List(
+        "Open drapes" -> "DRAPES",
+        "Examine room" -> "EXAMINE_ROOM"
+      )
+    ) match {
+      case "DRAPES" =>
+        printAndWait(text19)
+        printAndWait(text20)
+        takeStock("What now?")
+      case "EXAMINE_ROOM" =>
+        printAndWait(text22)
+        printAndWait(text23)
+        phoneCall(text24)
+    }
+  }
+
+  def phoneCall(text: String): Unit = {
+    promptChoice(
+      text, List(
+        "Answer phone" -> "PHONE",
+        "Not now" -> "LATER"
+      )
+    ) match {
+      case "PHONE" => answerPhone()
+      case "LATER" => phoneCall(text24a)
+    }
+  }
+
+  def answerPhone(): Unit = {
+    promptChoice(text25, List(
+      "'Yes'" -> "YES",
+      "'No'" -> "NO"
+    ))
+    promptChoice(text26, List(
+      "'Yes'" -> "YES",
+      "'No'" -> "NO"
+    )) match {
+      case "NO" =>
+        printAndWait(text27)
+        askAboutAmericanExpress()
+      case "YES" => askAboutAmericanExpress()
+    }
+  }
+
+  def askAboutAmericanExpress(): Unit = {
+    promptChoice(text27a, List(
+      "'Yes'" -> "YES",
+      "'No'" -> "NO"
+    )) match {
+      case "YES" => sendBellboy()
+      case "NO" =>
+        printAndWait(text27b)
+        sendBellboy()
+    }
+  }
+
+  def sendBellboy(): Unit = ???
 
   def goToNode2(): Unit = {
     printAndWait("Off to Node 2")

@@ -102,7 +102,7 @@ object Node1Text {
       |and slung over your shoulder, toga-style, when there's one
       |last warning rap on the door, and before you have time to ask
       |who's there, a maid wheels in a trolley of linens. She takes
-      |one look at you, says "Opps, sorry," puts the trolley into
+      |one look at you, says "Oops, sorry," puts the trolley into
       |reverse, and makes a dignified exit.
       |""".stripMargin
 
@@ -268,6 +268,10 @@ object Node1Text {
       |  "Are you quite sure? The check-out time, as I pointed
       |out, is in five minutes. Can you be packed and out of your
       |room in five minutes?"
+      |
+      |  Of course you answer 'no', you don't even know if you can find
+      |proper clothes in five minutes, much less be ready to go out
+      |on the street.
       |""".stripMargin
 
   val text27a: String =
