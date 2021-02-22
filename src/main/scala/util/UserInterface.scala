@@ -3,7 +3,7 @@ package util
 import scala.annotation.tailrec
 import scala.io.StdIn.readLine
 
-object Parser {
+object UserInterface {
 
   def printAndWait(text: String): String = {
     println(text)
@@ -19,24 +19,30 @@ object Parser {
   }
 
   @tailrec
-  def printAndMakeChoice(text: String, choices: List[(String, String)]): String = {
+  def promptChoice(text: String, choices: List[(String, String)]): String = {
     println(text)
     println("")
     choices
       .zipWithIndex
       .foreach{case (choice: (String, String), index: Int) =>
-        println(s"${index}) ${choice._1}")
+        println(s"${index + 1}) ${choice._1}")
       }
     println("")
     print("Enter number of your choice: ")
     val selection = readLine()
     try {
-      choices.apply(selection.toInt)._2
+      choices.apply(selection.toInt - 1)._2
     } catch {
-      case _: NumberFormatException => {
+      case _: NumberFormatException =>
         println("Please input a number.")
-        printAndMakeChoice(text, choices)
-      }
+        promptChoice(text, choices)
     }
+  }
+
+  def promptFreeformResponse(text: String): String = {
+    println(text)
+    println("")
+    print("Enter response: ")
+    readLine()
   }
 }
