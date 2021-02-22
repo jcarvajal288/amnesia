@@ -6,17 +6,15 @@ import util.Parser._
 object Node1 {
 
   def begin(gameContext: GameContext): Unit = {
-    print(Node1Text.text1)
-    waitForUser()
-    print(Node1Text.text2)
-    waitForUser()
-    print(Node1Text.text3)
-    makeChoice(List(
+    printAndWait(Node1Text.text1)
+    printAndWait(Node1Text.text2)
+    printAndMakeChoice(
+      Node1Text.text3, List(
       "Get Up" -> "GET_UP",
       "Go back to sleep" -> "SLEEP"
     )) match {
       case "SLEEP" => sleep(gameContext)
-      case "GET_UP" => getUp(gameContext)
+      case "GET_UP" => outOfBed(gameContext)
     }
   }
 
@@ -24,26 +22,27 @@ object Node1 {
     throw new RuntimeException("Off to NODE 2")
   }
 
-  def getUp(gameContext: GameContext): Unit = {
-    print(Node1Text.text4)
-    print(Node1Text.text4a)
-    val hairColor = makeChoice(List(
+  def outOfBed(gameContext: GameContext): Unit = {
+    printAndWait(Node1Text.text4)
+    val hairColor = printAndMakeChoice(
+      Node1Text.text4a, List(
       "Light" -> "dark",
       "Dark" -> "light"
     ))
-    print(Node1Text.text4b)
-    val hairLength = makeChoice(List(
+    val hairLength = printAndMakeChoice(
+      Node1Text.text4b, List(
       "Long" -> "short",
       "Short" -> "long"
     ))
-    print(Node1Text.text5)
-    val beardType = makeChoice(List(
+    val beardType = printAndMakeChoice(
+      Node1Text.text5, List(
       "Beard" -> "a mustache",
       "Mustache" -> "neither a beard nor a mustache",
       "Neither" -> "a beard"
     ))
-    print(Node1Text.text6)
-    val eyeColor = makeChoice(List(
+    print()
+    val eyeColor = printAndMakeChoice(
+      Node1Text.text6, List(
       "Blue" -> "brown",
       "Brown" -> "green",
       "Green" -> "blue"
@@ -53,6 +52,6 @@ object Node1 {
       .replace("(hairLength)", hairLength)
       .replace("(beardType)", beardType)
       .replace("(eyeColor)", eyeColor)
-    print(filledInText7)
+    printAndWait(filledInText7)
   }
 }

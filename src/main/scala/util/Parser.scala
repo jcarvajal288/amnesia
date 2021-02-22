@@ -5,11 +5,8 @@ import scala.io.StdIn.readLine
 
 object Parser {
 
-  def print(text: String): Unit = {
-    System.out.println(text)
-  }
-
-  def waitForUser(): String = {
+  def printAndWait(text: String): String = {
+    println(text)
     println("")
     print("Press enter to continue.")
     readLine()
@@ -22,7 +19,8 @@ object Parser {
   }
 
   @tailrec
-  def makeChoice(choices: List[(String, String)]): String = {
+  def printAndMakeChoice(text: String, choices: List[(String, String)]): String = {
+    println(text)
     println("")
     choices
       .zipWithIndex
@@ -36,7 +34,8 @@ object Parser {
       choices.apply(selection.toInt)._2
     } catch {
       case _: NumberFormatException => {
-        makeChoice(choices)
+        println("Please input a number.")
+        printAndMakeChoice(text, choices)
       }
     }
   }
