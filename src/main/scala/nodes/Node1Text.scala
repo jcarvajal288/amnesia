@@ -203,7 +203,7 @@ object Node1Text {
       |after Ford there's been ...Carter. That would have been in
       |'76. And after Carter? Reagan, right. Then it started
       |getting hazy. Which meant that this was '81 at the earliest.
-      |Which proved what? That your mind isn t totally dysfunctio-
+      |Which proved what? That your mind isn't totally dysfunctio-
       |nal. The weird thing is that despite the panicky feeling
       |that comes and goes you're not feeling so bad. In a way it
       |was kind of enjoyable. This is probably how people would
@@ -305,9 +305,9 @@ object Node1Text {
   val text29: String =
     """
       |  Ah, but if this "Cameron" had paid with an American
-      |Express card . . Then he was probably the genuine
+      |Express card ... Then he was probably the genuine
       |article. And if your own signature as "Cameron" gibes with
-      |the one on the receipt the bellboy is bringing. . . You saw
+      |the one on the receipt the bellboy is bringing... You saw
       |a ballpoint pen somewhere just a moment ago--where?
       |""".stripMargin
 
@@ -343,7 +343,8 @@ object Node1Text {
       |rapping on the door. He presents you with the readjusted
       |American Express credit slip. "One moment," you say, and
       |take the credit slip over to the desk where you have been
-      |practising the signatures of (responses) Cameron.
+      |practising the signatures of (responses)
+      |Cameron.
       |""".stripMargin
 
   val text32a: String =
@@ -355,7 +356,8 @@ object Node1Text {
       |some clothes, but a combination of shyness and common sense
       |prevent you. First things first: "One moment," you say, and
       |take the credit slip over to the desk where you have been
-      |practising the signatures of (responses) Cameron.
+      |practising the signatures of (responses)
+      |Cameron.
       |""".stripMargin
 
   val text33: String =
@@ -367,7 +369,7 @@ object Node1Text {
       |proves what? 1. That this is your room, and 2, that the
       |name was probably your real name, not an alias, since who
       |can get a credit card for a phony name?
-      |  The bellboy makes a significant cough.He must be
+      |  The bellboy makes a significant cough. He must be
       |waiting for a tip.
       |""".stripMargin
 
