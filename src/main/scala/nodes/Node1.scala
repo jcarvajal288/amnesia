@@ -1,6 +1,7 @@
 package nodes
 
 import nodes.Node1Text._
+import util.Constants._
 import util.GameContext
 import util.UserInterface._
 
@@ -11,8 +12,7 @@ class Node1(gameContext: GameContext) {
   def begin(): Unit = {
     printAndWait(text1)
     printAndWait(text2)
-    promptChoice(
-      text3, List(
+    promptChoice(text3, List(
       "Get Up" -> "GET_UP",
       "Go back to sleep" -> "SLEEP"
     )) match {
@@ -27,25 +27,21 @@ class Node1(gameContext: GameContext) {
 
   def outOfBed(): Unit = {
     printAndWait(text4)
-    val hairColor = promptChoice(
-      text4a, List(
+    val hairColor = promptChoice(text4a, List(
       "Light" -> "dark",
       "Dark" -> "light"
     ))
-    val hairLength = promptChoice(
-      text4b, List(
+    val hairLength = promptChoice(text4b, List(
       "Long" -> "short",
       "Short" -> "long"
     ))
-    val beardType = promptChoice(
-      text5, List(
+    val beardType = promptChoice(text5, List(
       "Beard" -> "a mustache",
       "Mustache" -> "neither a beard nor a mustache",
       "Neither" -> "a beard"
     ))
     print()
-    val eyeColor = promptChoice(
-      text6, List(
+    val eyeColor = promptChoice(text6, List(
       "Blue" -> "brown",
       "Brown" -> "green",
       "Green" -> "blue"
@@ -60,8 +56,7 @@ class Node1(gameContext: GameContext) {
   }
 
   def knockOnDoor(): Unit = {
-    promptChoice(
-      text8, List(
+    promptChoice(text8, List(
         "Get dressed" -> "DRESSED",
         "Look around" -> "LOOK"
       )
@@ -76,8 +71,7 @@ class Node1(gameContext: GameContext) {
 
   @tailrec
   final def lookForClothes(text: String): Unit = {
-    promptChoice(
-      text, List(
+    promptChoice(text, List(
         "Look in closet" -> "CLOSET",
         "Look in bathroom" -> "BATHROOM",
         "Look under bed" -> "BED",
@@ -100,14 +94,13 @@ class Node1(gameContext: GameContext) {
   }
 
   def lookInCloset(): Unit = {
-    promptChoice(
-      text11, List(
+    promptChoice(text11, List(
         "Wear blanket" -> "BLANKET",
         "Look elsewhere" -> "LOOK_ELSEWHERE"
       )
     ) match {
       case "BLANKET" =>
-        gameContext.storeValue("wearing", "blanket")
+        gameContext.storeValue(WEARING, "blanket")
         printAndWait(text12)
         takeStock(text18)
       case "LOOK_ELSEWHERE" =>
@@ -123,12 +116,10 @@ class Node1(gameContext: GameContext) {
       "Use the toilet" -> "USE_TOILET",
       "Leave the bathroom" -> "LEAVE"
     )
-    if(!gameContext.valueSetAs("wearing", "towel")) {
+    if(!gameContext.valueSetAs(WEARING, "towel")) {
       choices = choices.+:("Wear Towel" -> "TOWEL")
     }
-    promptChoice(
-      text13, choices
-    ) match {
+    promptChoice(text13, choices) match {
       case "TOWEL" =>
         takeTowel()
       case "LOOK_IN_TOILET" =>
@@ -149,17 +140,12 @@ class Node1(gameContext: GameContext) {
   }
 
   def bathroomDally(action: String): Unit = {
-    printAndWait(
-      text17b.replace(
-        "(bathroomAction)", action
-      )
-    )
+    printAndWait(text17b.replace("(bathroomAction)", action))
   }
 
   def takeTowel(): Unit = {
-    gameContext.storeValue("wearing", "towel")
-    promptChoice(
-      text14, List(
+    gameContext.storeValue(WEARING, "towel")
+    promptChoice(text14, List(
         "Yes" -> "YES",
         "No" -> "NO"
       )
@@ -170,13 +156,12 @@ class Node1(gameContext: GameContext) {
   }
 
   def lookInToilet(): Unit = {
-    val response: String = promptFreeformResponse(text15)
+    val response: String = promptFreeformResponse(text15, "Enter response: ")
     if (response.toUpperCase.contains("SHIT")) {
       printAndWait(text16)
       goToNode2()
     } else {
-      promptChoice(
-        text17, List(
+      promptChoice(text17, List(
           "Keep looking" -> "STAY",
           "Return to room" -> "EXIT"
         )
@@ -188,8 +173,7 @@ class Node1(gameContext: GameContext) {
   }
 
   def takeStock(text: String): Unit = {
-    promptChoice(
-      text, List(
+    promptChoice(text, List(
         "Open drapes" -> "DRAPES",
         "Examine room" -> "EXAMINE_ROOM"
       )
@@ -206,8 +190,7 @@ class Node1(gameContext: GameContext) {
   }
 
   def phoneCall(text: String): Unit = {
-    promptChoice(
-      text, List(
+    promptChoice(text, List(
         "Answer phone" -> "PHONE",
         "Not now" -> "LATER"
       )
@@ -245,7 +228,46 @@ class Node1(gameContext: GameContext) {
     }
   }
 
-  def sendBellboy(): Unit = ???
+  def sendBellboy(): Unit = {
+    printAndWait(text28)
+    promptChoice(text29, List(
+      "In the Bible" -> "BIBLE"
+    ))
+    printAndWait(text30)
+    printAndWait(text31)
+    val responses = promptForResponses(text31a, 5)
+    if (responses.map(_.toUpperCase()).contains("JOHN")) {
+      gameContext.setFlag(WROTE_JOHN)
+    }
+    val responseString = s"${responses(0)}, ${responses(1)}, ${responses(2)}, ${responses(3)}, and ${responses(4)}"
+    gameContext.readValue(WEARING) match {
+      case Some(clothing) =>
+        val changedText32 = text32
+            .replace("(clothing)", clothing)
+            .replace("(responses)", responseString)
+        printAndWait(changedText32)
+      case None =>
+        val changedText32a = text32a
+          .replace("(responses)", responseString)
+        printAndWait(changedText32a)
+    }
+
+    val responseToBellboy = if (gameContext.testFlag(WROTE_JOHN)) {
+      promptFreeformResponse(text33, "What do you say? ")
+    } else {
+      promptFreeformResponse(text33a, "What do you say? ")
+    }
+
+    if (
+      !(responseToBellboy.toUpperCase.contains("THANK YOU") ||
+      responseToBellboy.toUpperCase.contains("I'M SORRY"))
+    ) {
+      gameContext.setFlag(ANGRY_BELLBOY)
+    }
+    backToRoom()
+  }
+
+  def backToRoom(): Unit = ???
 
   def goToNode2(): Unit = {
     printAndWait("Off to Node 2")

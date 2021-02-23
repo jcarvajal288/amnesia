@@ -4,17 +4,25 @@ import scala.collection.mutable
 
 class GameContext {
 
-  private val valueStore: mutable.Map[String, String] = mutable.Map()
+  private val valueStore: mutable.Map[Constants.Value, String] = mutable.Map()
 
-  def storeValue(key: String, value: String): Unit = {
+  def storeValue(key: Constants.Value, value: String): Unit = {
     valueStore.addOne(key -> value)
   }
 
-  def readValue(key: String): Option[String] = {
+  def readValue(key: Constants.Value): Option[String] = {
     valueStore get key
   }
 
-  def valueSetAs(key: String, value: String): Boolean = {
+  def valueSetAs(key: Constants.Value, value: String): Boolean = {
     (valueStore contains key) && readValue(key).get == value
+  }
+
+  def setFlag(key: Constants.Value): Unit = {
+    valueStore.addOne(key -> "x")
+  }
+
+  def testFlag(key: Constants.Value): Boolean = {
+    valueStore contains key
   }
 }

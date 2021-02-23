@@ -334,17 +334,16 @@ object Node1Text {
       |Cameron.
       |""".stripMargin
 
+  val text31a: String = "The five first names you use for this experiment are:"
+
   val text32: String =
     """
-      |  The promised bellboy soon appears, and wrapping [IF
-      |  Blanket or Towel have been taken at 11> or 13> below, that
-      |  word is inserted here: your towel {or: your blanket] more
-      |  securely about your waist, you answer his rapping on the
-      |  door. He presents you with the readjusted American Express
-      |  credit slip. "One moment," you say, and take the credit
-      |  slip over to the desk where you have been practising the
-      |  signatures of [insert five names, separated by commas, given
-      |  at >31, with an "and" before the last of the series] Cameron.
+      |  The promised bellboy soon appears, and wrapping your
+      |(clothing) more securely about your waist, you answer his
+      |rapping on the door. He presents you with the readjusted
+      |American Express credit slip. "One moment," you say, and
+      |take the credit slip over to the desk where you have been
+      |practising the signatures of (responses) Cameron.
       |""".stripMargin
 
   val text32a: String =
@@ -354,7 +353,9 @@ object Node1Text {
       |crack to take the readjusted credit slip, he will not see
       |that you are naked. You consider asking him to help you get
       |some clothes, but a combination of shyness and common sense
-      |prevent you. First things first: "One moment," you say,
+      |prevent you. First things first: "One moment," you say, and
+      |take the credit slip over to the desk where you have been
+      |practising the signatures of (responses) Cameron.
       |""".stripMargin
 
   val text33: String =
@@ -375,8 +376,12 @@ object Node1Text {
       |  The signatures match. At least the way you've written
       |"Cameron" is the same on both the practice sheet and on
       |the the credit slip. It turns out that your first name
-      |is John. John Cameron III. Which proves what? [Text
-      |continues the same as in (33);]
+      |is John. John Cameron III. Which proves what? 1. That this
+      |is your room, and 2, that the name was probably your real
+      |name, not an alias, since who can get a credit card for a
+      |phony name?
+      |   The bellboy makes a significant cough. He must be
+      |waiting for a tip.
       |""".stripMargin
 
   val text34: String =

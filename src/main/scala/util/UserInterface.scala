@@ -39,10 +39,17 @@ object UserInterface {
     }
   }
 
-  def promptFreeformResponse(text: String): String = {
+  def promptFreeformResponse(text: String, prompt: String): String = {
     println(text)
     println("")
-    print("Enter response: ")
+    print(prompt)
     readLine()
+  }
+
+  def promptForResponses(text: String, numResponses: Int): List[String] = {
+    for (i <- (1 to numResponses).toList) yield {
+      print(s"Enter response #$i: ")
+      readLine()
+    }
   }
 }
