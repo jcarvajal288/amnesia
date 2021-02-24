@@ -395,27 +395,4 @@ object Node1Text {
       |bathroom where there might be clothes?
       |""".stripMargin
 
-  val text35: String =
-    """
-      |But enough of dealing with problems. Enough of thinking.
-      |You decide that what you need right now is a warm mental
-      |bath--so you turn on the teevee. It's tuned to the
-      |hotel's own cable channel, and the screen fills with the
-      |heaving breasts and writhing limbs of a closed circuit X-
-      |rated movie. You feel just enough arousal to know that
-      |your sexual orientation is definitely heterosexual--but
-      |for the moment all that naked flesh only reminds ynu more
-      |vividly of your own sartorial dilemma. You look at the
-      |pushbutton dial of the teevee, which gives you a choice
-      |of ON/OFF or FORWARD to the next channel on the dial.
-      |""".stripMargin
-
-  val text36: String = "You turn the teevee off. Now what?"
-
-  val text36a: String =
-    """
-      |  The teevee is on already. Boy, you really are suffering
-      |from amnesia. If you want to watch another channel just push
-      |the F (for FORWARD) button.
-      |""".stripMargin
 }

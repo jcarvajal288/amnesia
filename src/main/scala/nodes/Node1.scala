@@ -22,7 +22,7 @@ class Node1(gameContext: GameContext) {
   }
 
   def sleep(): Unit = {
-    goToNode2()
+    goToNightmare1()
   }
 
   def outOfBed(): Unit = {
@@ -159,7 +159,7 @@ class Node1(gameContext: GameContext) {
     val response: String = promptFreeformResponse(text15, "Enter response: ")
     if (response.toUpperCase.contains("SHIT")) {
       printAndWait(text16)
-      goToNode2()
+      goToNightmare1()
     } else {
       promptChoice(text17, List(
           "Keep looking" -> "STAY",
@@ -175,8 +175,9 @@ class Node1(gameContext: GameContext) {
   def takeStock(text: String): Unit = {
     promptChoice(text, List(
         "Open drapes" -> "DRAPES",
-        "Examine room" -> "EXAMINE_ROOM"
-      )
+        "Examine room" -> "EXAMINE_ROOM",
+        "Watch TV" -> "TV"
+    )
     ) match {
       case "DRAPES" =>
         printAndWait(text19)
@@ -186,6 +187,9 @@ class Node1(gameContext: GameContext) {
         printAndWait(text22)
         printAndWait(text23)
         phoneCall(text24)
+      case "TV" =>
+        new WatchTv(gameContext).begin()
+        takeStock(WatchTvText.text36)
     }
   }
 
@@ -267,10 +271,12 @@ class Node1(gameContext: GameContext) {
     backToRoom()
   }
 
-  def backToRoom(): Unit = ???
+  def backToRoom(): Unit = {
+    printAndWait("To Node Room 1502")
+  }
 
-  def goToNode2(): Unit = {
-    printAndWait("Off to Node 2")
+  def goToNightmare1(): Unit = {
+    printAndWait("To Node Nightmare 1")
   }
 
 }
