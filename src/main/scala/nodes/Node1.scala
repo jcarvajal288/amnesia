@@ -1,6 +1,7 @@
 package nodes
 
-import nodes.Node1Text._
+import text.Node1Text._
+import text.WatchTvText
 import util.Constants._
 import util.GameContext
 import util.UserInterface._

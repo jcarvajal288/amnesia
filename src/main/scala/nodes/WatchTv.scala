@@ -1,6 +1,6 @@
 package nodes
 
-import nodes.WatchTvText._
+import text.WatchTvText._
 import util.GameContext
 import util.UserInterface._
 import util.Constants._

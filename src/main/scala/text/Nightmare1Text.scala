@@ -1,4 +1,4 @@
-package nodes
+package text
 
 object Nightmare1Text {
 
@@ -375,7 +375,7 @@ object Nightmare1Text {
   val text20a: String =
     """
       |You open another box. It contains a basket imported from
-      |Thailand. It 's just about the right size for carrying your
+      |Thailand. It's just about the right size for carrying your
       |head, once you find it, but that's small consolation.
       |""".stripMargin
 
@@ -406,4 +406,3 @@ object Nightmare1Text {
       |instantly the nightmare fades from your memory.
       |""".stripMargin
 }
-
