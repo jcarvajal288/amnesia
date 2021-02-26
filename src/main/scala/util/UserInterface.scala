@@ -52,4 +52,17 @@ object UserInterface {
       readLine()
     }
   }
+
+  def containsObscenities(text: String): Boolean = {
+    List(
+      "FUCK",
+      "SHIT",
+      "DAMN",
+      "CUNT",
+      "JIZZ",
+      "COCK",
+      "DICK",
+      "TURD"
+    ).exists(text.toUpperCase.contains(_))
+  }
 }
