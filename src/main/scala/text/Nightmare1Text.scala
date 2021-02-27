@@ -250,11 +250,10 @@ object Nightmare1Text {
     """
       |You take the escalator up to the ninth floor, where an
       |elderly salesman insists on giving you a demonstration of the
-      |[Name of computer for which the disc is adapted] computer.
-      |The salesman shows you how easy it is to boot a disc, and
-      |then some words flicker down the face of the screen. "That
-      |is a riddle," the salesman explains, "and you must solve it."
-      |The lines on the screen are:
+      |Apple II computer. The salesman shows you how easy it is to
+      |boot a disc, and then some words flicker down the face of the
+      |screen. "That is a riddle," the salesman explains, "and you
+      |must solve it." The lines on the screen are:
       |                 Although I talk of no one and
       |                 Of nothing else but me and mine,
       |                 I hope you will not understand
